@@ -5,6 +5,11 @@ require("firebase/firestore");
 
 var database = firebase.firestore()
 
+const googleMapsClient = require('@google/maps').createClient({
+    key: 'AIzaSyCZsSuX0Pb4Oz7pLiRuG8_jesTpI6yLGHs',
+    Promise: Promise
+  });
+
 async function createRide(req, res) {
     let data = {
         driver_name: req.body.driver_name,
@@ -18,8 +23,28 @@ async function createRide(req, res) {
         max_passengers: req.body.max_passengers,
         charge_amt: req.body.charge_amt
     }
-    for(const property in data)
-        console.log(`${property}: ${data[property]}`);
+
+    await googleMapsClient.geocode({ address: data.start_addr }).asPromise()
+    .then((response) => {
+        data["start_coor"] = {
+            lat: response.json.results[0].geometry.location.lat,
+            long: response.json.results[0].geometry.location.lng
+        }
+    }).catch((err) => {
+        console.log(err);
+    });
+    console.log(data)
+    await googleMapsClient.geocode({ address: data.dest_addr }).asPromise()
+    .then((response) => {
+        data["dest_coor"] = {
+            lat: response.json.results[0].geometry.location.lat,
+            long: response.json.results[0].geometry.location.lng
+        }
+    }).catch((err) => {
+        console.log(err);
+    });
+    
+    console.log(data);
     res.end("Ride Successfully Created!");
 }
 
