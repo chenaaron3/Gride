@@ -70,22 +70,41 @@ async function findRides(req, res) {
     .where("year", "==", parseInt(req.query.year)).where("month", "==", parseInt(req.query.month))
     .where("day", "==", parseInt(req.query.day))
     .get().then((querySnapshot) => {
-        querySnapshot.forEach(function(doc) {
+        const promises = [];
+        const responses = [];
+        querySnapshot.forEach( function(doc) {
             // doc.data() is never undefined for query doc snapshots
+            // docs.push(doc);
             var response = doc.data();
             var start_coor = response.start_coor;
             var dest_coor = response.dest_coor;
             response["ride_id"] = doc.id;
             if (distance(start_coor.lat, start_coor.long, start_lat, start_long, "M") < 5 && 
                 distance(dest_coor.lat, dest_coor.long, dest_lat, dest_long, "M") < 5) {
-                results["results"].push(response);    
-                console.log(doc.data());
+                    // results["results"].push(response);    
+                    // console.log(response);
+                responses.push(response);
+                const p = doc.ref.collection("passengers").get().then(snap => {
+                    return snap.size;
+                });
+                promises.push(p);
             }
-        });  
-        console.log("Results: ", results);
-        res.status(200).json(results);
-    
-    }).catch(function(error) {
+            
+        });
+        
+        
+       return Promise.all(promises).then((sizes) => {
+            for (var i = 0; i < sizes.length; i++) {
+                responses[i]["num_passengers"] = sizes[i];
+            }
+            results["results"] = responses;
+            console.log("Results: ", results);
+            res.status(200).json(results);
+       }); 
+       //console.log("Results: ", results);
+        //res.status(200).json(results);
+    })
+    .catch(function(error) {
         console.log("Error getting document:", error);
         res.status(404).json({
             status: "ERROR",
