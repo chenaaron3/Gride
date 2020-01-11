@@ -1,16 +1,31 @@
 import React from 'react';
-import Head from 'next/head'
+import Head from 'next/head';
+import LandingPage from './index.js';
+import LabeledButton from "../public/Components/LabeledButton";
+import "../public/css/passengerConfirm.scss";
 
 class PassengerConfirm extends React.Component
 {
     render()
     {
         return (<React.Fragment>
-            <Head>
+            <head>
                 <title>Passenger Confirmation</title>
                 <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <p>Passenger Confirmation Page!</p>
+            </head>
+            <div class = "Background">
+                <div class="Inner">
+                    <div class="Header">
+                        <h1>Confirmed!</h1>
+                    </div>
+                    <div class="Message">
+                        <p>We'll send you a text when someone signs ups to carpool with you.</p>
+                    </div>
+                    <div class="Home">
+                     <LabeledButton label="Finished?" txt="Go Home!" btnhref="/"/>
+                    </div>
+                </div>
+            </div>
         </React.Fragment>)
     }
 }
