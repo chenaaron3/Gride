@@ -21,9 +21,7 @@ class LandingPage extends React.Component
 
               <div className="options center-container card">
                   <p>
-                      Are you a
-                  </p>
-                  <p>
+                      Are you a<br/>
                       ...
                   </p>
                   <div id="buttons">

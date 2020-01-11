@@ -1,0 +1,69 @@
+@import "./_variables.scss";
+
+form {
+  position: absolute;
+  top: 0;
+  background-color: $dark-background;
+  width: 75%;
+  margin-top: 5vh;
+  height: 40%;
+}
+
+.searchTitle{
+  color: $highlight-text;
+}
+
+.searchBox{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchTime, .searchLocation{
+  width: 100%;
+}
+
+.input-field{
+  position: relative;
+  margin-top: 35px;
+  padding: 20px 0;
+  color: $normal-text;
+  width: 75%;
+
+  label{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    transition: .25s;
+    font-weight: normal;
+  }
+
+  input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline;
+    outline: none;
+    border: none;
+    border-bottom: thin solid black;
+    padding-left: 10px;
+    height: 100%;
+    width: 100%;
+  }
+
+  input:valid ~ label,
+  input:focus ~ label{
+    top: -25px;
+    color: $primary-color;
+  }
+}
+
+#search-form-send{
+  margin: 25px auto auto;
+}
+
+.searchResults{
+
+}

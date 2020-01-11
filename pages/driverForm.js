@@ -74,12 +74,6 @@ class DriverForm extends React.Component
             let month = parseFloat(value.substring(5,7));
             let day = parseFloat(value.substring(8,10));
             this.setState({dep_date: value, month: month, day: day, year: year});
-        }else if (target === 'month') {
-            this.setState({month: value});
-        }else if (target === 'day') {
-            this.setState({day: value});
-        }else if (target === 'year') {
-            this.setState({year: value});
         }else if (target === 'start_addr') {
             this.setState({start_addr: value});
         }else if (target === 'dest_addr') {

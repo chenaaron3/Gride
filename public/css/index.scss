@@ -26,10 +26,13 @@
   color: $normal-text;
 
   p{
-    font-size: 3em;
+    top: 0;
+    font-size: 50px;
+    text-align: center;
   }
 
   #buttons{
+    bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
