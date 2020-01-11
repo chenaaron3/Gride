@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head'
 import '../public/css/index.scss'
 import LabeledButton from "../public/Components/LabeledButton";
-import "../public/firebaseConfig";
+import firebase from '../public/firebaseConfig.js'
 
 class LandingPage extends React.Component
 {

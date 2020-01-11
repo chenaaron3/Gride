@@ -10,6 +10,7 @@ form {
 }
 
 .searchTitle{
+  font-size: 1.5em;
   color: $highlight-text;
 }
 
@@ -51,6 +52,7 @@ form {
     padding-left: 10px;
     height: 100%;
     width: 100%;
+    text-align: left;
   }
 
   input:valid ~ label,
@@ -62,6 +64,7 @@ form {
 
 #search-form-send{
   margin: 25px auto auto;
+  font-size: 1.25em;
 }
 
 .searchResults{

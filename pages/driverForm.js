@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head'
 import '../public/css/driverForm.scss'
 const fetch = require('node-fetch');
+import firebase from '../public/firebaseConfig.js'
 
 class DriverForm extends React.Component
 {
@@ -25,18 +26,16 @@ class DriverForm extends React.Component
         let time = 60 * hours + mins;
 
     this.state = {
-            driver_name: "Aaron",
-            driver_phone: "4084557370",
+            driver_name: "",
+            driver_phone: "",
             dep_time_display: dep_time_display,
             dep_time: time,
             dep_date: yyyy + "-" + mm + "-" + dd,
             month: parseFloat(mm),
             day: parseFloat(dd),
             year: parseFloat(yyyy),
-            start_addr: "12316 Scully Ave",
-            dest_addr: "636 Stanford Ct",
-            max_passengers: 0,
-            charge_amt:0
+            start_addr: "",
+            dest_addr: ""
         }
     }
 
@@ -51,7 +50,7 @@ class DriverForm extends React.Component
             return response.text();
         }).then(function(data) {
             alert(data);
-            window.open("/", "_self");
+            window.open("/driverConfirm", "_self");
         });
 
         event.preventDefault();

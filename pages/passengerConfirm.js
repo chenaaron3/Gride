@@ -3,6 +3,7 @@ import Head from 'next/head';
 import LandingPage from './index.js';
 import LabeledButton from "../public/Components/LabeledButton";
 import "../public/css/passengerConfirm.scss";
+import firebase from '../public/firebaseConfig.js'
 
 class PassengerConfirm extends React.Component
 {

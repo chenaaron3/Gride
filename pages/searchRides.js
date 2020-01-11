@@ -1,7 +1,9 @@
 import React from 'react';
-import Head from 'next/head'
-import '../public/css/searchRides.scss'
+import Head from 'next/head';
+import '../public/css/searchRides.scss';
 const fetch = require('node-fetch');
+import SearchItem from "../public/Components/SearchItem";
+import firebase from '../public/firebaseConfig.js'
 
 class SearchRides extends React.Component
 {
@@ -24,13 +26,24 @@ class SearchRides extends React.Component
         let mins = parseFloat(dep_time_display.substring(3,5));
         let time = 60 * hours + mins;
 
+        // this.state = {
+        //     dep_time_display: dep_time_display,
+        //     dep_time: time,
+        //     dep_date: yyyy + "-" + mm + "-" + dd,
+        //     month: parseFloat(mm),
+        //     day: parseFloat(dd),
+        //     year: parseFloat(yyyy),
+        //     start_addr: "Events Center, Isla Vista, CA 93117",
+        //     dest_addr: "Bus Loop, Irvine, CA 92612"
+        // }
+
         this.state = {
             dep_time_display: dep_time_display,
-            dep_time: time,
+            dep_time: 90,
             dep_date: yyyy + "-" + mm + "-" + dd,
-            month: parseFloat(mm),
-            day: parseFloat(dd),
-            year: parseFloat(yyyy),
+            month: 1,
+            day: 10,
+            year: 2020,
             start_addr: "Events Center, Isla Vista, CA 93117",
             dest_addr: "Bus Loop, Irvine, CA 92612"
         }
@@ -44,7 +57,7 @@ class SearchRides extends React.Component
     }
 
     handleSubmit = (event) => {
-        var url = '/api/findRides?'
+        var url = '/api/findRides?';
         var params = {time: this.state.dep_time,
                         month: this.state.month,
                         day: this.state.day,
@@ -61,7 +74,7 @@ class SearchRides extends React.Component
             return response.json();
         }).then(function(json) {
             console.log(json);
-            comp.setState({data: json});
+            comp.setState({data: json.results});
         });
 
         event.preventDefault();
@@ -130,9 +143,11 @@ class SearchRides extends React.Component
                     </div>
                 </div>
             </form>
-            <div className="searchResults">
+            <div className="searchResults center-container">
                 {
-                    this.state.data && <div>There Is Data!</div>
+                    this.state.data && this.state.data.map((data, i) =>{
+                        console.log(data);
+                        return (<SearchItem key={i} data={data}/>)})
                 }
             </div>
         </React.Fragment>)
