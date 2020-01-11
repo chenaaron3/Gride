@@ -19,7 +19,28 @@ var database = firebase.firestore()
 // Start Address
 // Destination Address
 
-  
+function distance(lat1, lon1, lat2, lon2, unit) {
+    console.log(lat1, lon1, lat2, lon2)
+	if ((lat1 == lat2) && (lon1 == lon2)) {
+		return 0;
+	}
+	else {
+		var radlat1 = Math.PI * lat1/180;
+		var radlat2 = Math.PI * lat2/180;
+		var theta = lon1-lon2;
+		var radtheta = Math.PI * theta/180;
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		if (dist > 1) {
+			dist = 1;
+		}
+		dist = Math.acos(dist);
+		dist = dist * 180/Math.PI;
+		dist = dist * 60 * 1.1515;
+		if (unit=="K") { dist = dist * 1.609344 }
+		if (unit=="N") { dist = dist * 0.8684 }
+		return dist;
+	}
+}
 
 async function findRides(req, res) {
 
@@ -40,30 +61,38 @@ async function findRides(req, res) {
         console.log(err);
     });
     console.log(start_lat, start_long, dest_lat, dest_long);
-    var filterRef = database.collection("rides").where("dep_time", "==", req.query.time)
-    .where("year", "==", req.query.year).where("month", "==", req.query.month)
-    .where("day", "==", req.query.day);
-    console.log("helo");
-    firebase.firestore.GeoPoint()
-    filterRef = filterRef.where("start_lat", ">=", start_lat - 0.2).where("start_lat", "<=", start_lat + 0.2);
-    filterRef = filterRef.where("start_long", ">=", start_long - 0.2).where("start_long", "<=", start_long + 0.2);
 
-    filterRef = filterRef.where("dest_lat", ">=", dest_lat - 0.2).where("dest_lat", "<=", dest_lat + 0.2);
-    var results = filterRef.where("dest_long", ">=", dest_long - 0.2).where("dest_long", "<=", dest_long + 0.2);
 
-    results.get().then(function(querySnapshot) {
+    
+    var results = {"results": []};
+
+    database.collection("rides").where("dep_time", "==", parseInt(req.query.time))
+    .where("year", "==", parseInt(req.query.year)).where("month", "==", parseInt(req.query.month))
+    .where("day", "==", parseInt(req.query.day))
+    .get().then((querySnapshot) => {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+            var response = doc.data();
+            var start_coor = response.start_coor;
+            var dest_coor = response.dest_coor;
+
+            if (distance(start_coor.lat, start_coor.long, start_lat, start_long, "M") < 5 && 
+                distance(dest_coor.lat, dest_coor.long, dest_lat, dest_long, "M") < 5) {
+                results["results"].push(response);    
+                console.log(doc.data());
+            }
+        });  
+        console.log("Results: ", results);
+        res.status(200).json(results);
+    
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+        res.status(404).json({
+            status: "ERROR",
+            message: error
         });
     });
-    // database.collection("rides").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         console.log(`${doc.id} => ${doc.data()}`);
-    //     });
-    // });
 
-    res.end("Find Rides API!!");
 }
 
 export default findRides;
