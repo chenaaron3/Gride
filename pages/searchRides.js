@@ -26,26 +26,15 @@ class SearchRides extends React.Component
         let mins = parseFloat(dep_time_display.substring(3,5));
         let time = 60 * hours + mins;
 
-        // this.state = {
-        //     dep_time_display: dep_time_display,
-        //     dep_time: time,
-        //     dep_date: yyyy + "-" + mm + "-" + dd,
-        //     month: parseFloat(mm),
-        //     day: parseFloat(dd),
-        //     year: parseFloat(yyyy),
-        //     start_addr: "Events Center, Isla Vista, CA 93117",
-        //     dest_addr: "Bus Loop, Irvine, CA 92612"
-        // }
-
         this.state = {
             dep_time_display: dep_time_display,
-            dep_time: 90,
+            dep_time: time,
             dep_date: yyyy + "-" + mm + "-" + dd,
-            month: 1,
-            day: 10,
-            year: 2020,
-            start_addr: "Events Center, Isla Vista, CA 93117",
-            dest_addr: "Bus Loop, Irvine, CA 92612"
+            month: parseFloat(mm),
+            day: parseFloat(dd),
+            year: parseFloat(yyyy),
+            start_addr: "",
+            dest_addr: ""
         }
     }
 
@@ -65,6 +54,8 @@ class SearchRides extends React.Component
                         start_addr: this.state.start_addr,
                         dest_addr: this.state.dest_addr};
         url += this.encodeQueryData(params);
+
+        console.log("Searching at URL", url);
 
         let comp = this;
 
@@ -107,30 +98,30 @@ class SearchRides extends React.Component
                 <title>Search Rides</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <form onSubmit={this.handleSubmit} className="center-container">
+            <form onSubmit={this.handleSubmit} className="center-container searchRidesForm">
                 <div className="searchTitle">
                     <h1>Search for a Ride!</h1>
                 </div>
                 <div className = "searchBox">
                     <div className="searchTime center-container">
-                        <div className="input-field">
+                        <div className="search-input-field">
                             <input value={this.state.dep_time_display} type="time" name="dep_time_display"
                                    onChange={this.handleChange} required/>
                             <label>Departure Time</label>
                         </div>
-                        <div className="input-field">
+                        <div className="search-input-field">
                             <input value={this.state.dep_date} type="date" name="dep_date"
                                    onChange={this.handleChange} required/>
                             <label>Departure Date</label>
                         </div>
                     </div>
                     <div className="searchLocation center-container">
-                        <div className="input-field">
+                        <div className="search-input-field">
                             <input value={this.state.start_addr} type="text" name="start_addr"
                                    onChange={this.handleChange} required/>
                             <label>Start Address</label>
                         </div>
-                        <div className="input-field">
+                        <div className="search-input-field">
                             <input value={this.state.dest_addr} type="text" name="dest_addr"
                                    onChange={this.handleChange} required/>
                             <label>Destination Address</label>

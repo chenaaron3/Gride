@@ -14,12 +14,12 @@ class LandingPage extends React.Component
                   <link rel="icon" href="/favicon.ico" />
               </Head>
 
-              <div className="banner center-container">
+              <div className="indexBanner center-container">
                   <h1>Welcome to Gride!</h1>
                   <h3>Where you find carpool buddies.</h3>
               </div>
 
-              <div className="options center-container card">
+              <div className="indexOptions center-container card">
                   <p>
                       Are you a<br/>
                       ...

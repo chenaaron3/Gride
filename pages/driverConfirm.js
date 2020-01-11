@@ -14,15 +14,15 @@ class DriverConfirm extends React.Component
                 <title>Driver Confirmation</title>
                 <link rel="icon" href="/favicon.ico" />
             </head>
-            <div class = "Background">
-                <div class="Inner">
-                    <div class="Header">
+            <div className = "Background">
+                <div className="Inner">
+                    <div className="Header">
                         <h1>Confirmed!</h1>
                     </div>
-                    <div class="Message">
+                    <div className="Message">
                         <p>We'll send you a text with more information</p>
                     </div>
-                    <div class="Home">
+                    <div className="Home">
                      <LabeledButton label="Finished?" txt="Go Home!" btnhref="/"/>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 @import "./_variables.scss";
 
-form {
+.searchRidesForm {
   position: absolute;
   top: 0;
   background-color: $dark-background;
@@ -26,7 +26,7 @@ form {
   width: 100%;
 }
 
-.input-field{
+.search-input-field{
   position: relative;
   margin-top: 35px;
   padding: 20px 0;
@@ -68,5 +68,6 @@ form {
 }
 
 .searchResults{
-
+  width: 100%;
+  height: auto;
 }

@@ -4,21 +4,49 @@ import Link from 'next/link'
 
 class SearchItem extends React.Component
 {
+    determineColor = () =>{
+        let greenStyle = {
+            color: 'green'
+        };
+        let yellowStyle = {
+            color: 'yellow'
+        };
+        let redStyle = {
+            color: 'red'
+        };
+        let taken = this.props.data.num_passengers;
+        let total = this.props.data.max_passengers;
+        if(taken/total <= .25)
+            return greenStyle;
+        else if(taken/total <= .75)
+            return yellowStyle;
+        else
+            return redStyle;
+    }
+
     render() {
         return (
-            <Link href={`/resultRides?rideID=IMse8WAwvfJJBhyUz67U`} className="SearchItem">
-                <a>
+            <Link href={`/resultRides?rideID=IMse8WAwvfJJBhyUz67U`}>
+                <a className="SearchItem">
                     <div className="SearchItem">
-                        <div className="ItemPrice">
-                            ${this.props.data.charge_amt}
+                        <div className="ItemPrice center-container">
+                            <p>
+                                ${this.props.data.charge_amt}
+                            </p>
                         </div>
-                        <div className="ItemLocations">
-                            Start: {this.props.data.start_addr} <br/>
-                            Destination: {this.props.data.dest_addr}
+                        <div className="ItemLocations center-container">
+                            <p className="ItemStart">
+                                Start: {this.props.data.start_addr} <br/>
+                            </p>
+                            <p className="ItemDestination">
+                                Destination: {this.props.data.dest_addr}
+                            </p>
+                            <div className="ItemSpots center-container" style={this.determineColor()}>
+                                <span>
+                                    {this.props.data.num_passengers} / {this.props.data.max_passengers}
+                                </span>
+                            </div>
                         </div>
-                        <span className="ItemSpots">
-
-                        </span>
                     </div>
                 </a>
             </Link>)

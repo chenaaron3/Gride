@@ -1,7 +1,52 @@
 @import "../css/_variables.scss";
 
 .SearchItem{
-  width: 60vw;
+  position: relative;
+  width: 40vw;
   height: 10vh;
   background-color: $background;
+  display: flex;
+  flex-direction: row;
+
+  transition: .8s;
 }
+
+.SearchItem:hover{
+  opacity: .75;
+}
+
+.ItemPrice{
+  height: 100%;
+  width: 20%;
+  color: $primary-color;
+  font-size: 35px;
+}
+
+.ItemLocations{
+  width: 100%;
+  margin-right: 20%;
+}
+
+.ItemStart{
+  color: $highlight-text;
+}
+
+.ItemDestination{
+  color: $normal-text;
+}
+
+.ItemStart, .ItemDestination{
+  margin: auto;
+}
+
+.ItemSpots{
+  height: 100%;
+  width: 20%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2em;
+  color: red;
+}
+
+

@@ -25,7 +25,7 @@ class DriverForm extends React.Component
         let mins = parseFloat(dep_time_display.substring(3,5));
         let time = 60 * hours + mins;
 
-    this.state = {
+        this.state = {
             driver_name: "",
             driver_phone: "",
             dep_time_display: dep_time_display,
@@ -49,7 +49,6 @@ class DriverForm extends React.Component
         }).then(function(response) {
             return response.text();
         }).then(function(data) {
-            alert(data);
             window.open("/driverConfirm", "_self");
         });
 
@@ -86,13 +85,13 @@ class DriverForm extends React.Component
 
     render()
     {
-        return (<div className="center-container card container">
+        return (<div className="center-container card driverFormContainer">
             <Head>
                 <title>Driver Form</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <h1 className="driverFormDirections">Fill out this form to create a Ride!</h1>
-            <form onSubmit={this.handleSubmit} className="center-container">
+            <form onSubmit={this.handleSubmit} className="center-container driverForm">
                 <div className="input-field">
                     <input value={this.state.driver_name} type="text" name="driver_name"
                            onChange={this.handleChange} required/>
