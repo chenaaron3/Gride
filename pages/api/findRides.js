@@ -75,7 +75,7 @@ async function findRides(req, res) {
             var response = doc.data();
             var start_coor = response.start_coor;
             var dest_coor = response.dest_coor;
-
+            response["ride_id"] = doc.id;
             if (distance(start_coor.lat, start_coor.long, start_lat, start_long, "M") < 5 && 
                 distance(dest_coor.lat, dest_coor.long, dest_lat, dest_long, "M") < 5) {
                 results["results"].push(response);    
