@@ -138,19 +138,10 @@ async function find_shortest_permutation(randomized_passenger_list)
 }
 
   
-async function main_loop()
+export async function main_loop(origin, destination, passenger_list)
 {
-var origin = "4225 Campus Dr, Irvine, CA 92612";
-var destination = "680 California Ave, Irvine, CA 92617";
-var passenger_list = ["4541 Campus Dr, Irvine, CA 92612", "4771 Campus Dr, Irvine, CA 92612", "1054 Stanford Irvine CA",
-                  "5001 Newport Coast Dr, Irvine, CA 92603", ];
-console.log("passenger_list", Array.isArray(passenger_list));
-var randomized_passenger_list = create_permutations(passenger_list, origin, destination);
-// console.log(randomized_passenger_list);
-var shortest_permutation = find_shortest_permutation(randomized_passenger_list);
-console.log(shortest_permutation)
-// var link = create_link(shortest_permutation);
-// console.log(link);
+  var randomized_passenger_list = create_permutations(passenger_list, origin, destination);
+  var shortest_permutation_link = find_shortest_permutation(randomized_passenger_list);
+  console.log(shortest_permutation_link);
+  return (await shortest_permutation_link).toString();
 }
-
-main_loop()

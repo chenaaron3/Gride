@@ -1,6 +1,7 @@
 var firebase = require("firebase/app");
-
 require("firebase/firestore");
+import { main_loop } from '../../public/createRoute.js'
+
 
 var database = firebase.firestore()
 
@@ -28,8 +29,14 @@ async function joinRide(req, res) {
         console.log(err);
     });
     console.log(data);
-    // let addDoc = db.collection('rides').doc(data.ride_id).collection("passengers").add(data)
-    // .then(ref => {
+    var passenger_addr = [];
+    // db.collection('rides').doc(data.ride_id).collection("passengers").get()
+    // .then((querySnap) => {
+    //     querySnap.forEach( function(doc) {
+
+    //     });
+        
+    // }).then(ref => {
     //     console.log('Added document with ID: ', ref.id);
     // });
     res.end("You Have Been Added!");
