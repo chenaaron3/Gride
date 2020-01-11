@@ -1,5 +1,40 @@
 @import "./_variables.scss";
 
-p{
-  color: $primary-color;
+.banner{
+  background-color: $background;
+  width: 100%;
+  padding: 2em;
+  margin: 5em;
+
+  h1{
+    font-size: 5em;
+    padding-top: .5em;
+    color: $highlight-text;
+  }
+  h3{
+    padding: 1em 0;
+    color: $primary-color;
+  }
 }
+
+.options{
+  background-color: $background;
+  height: 50vh;
+  width: 100%;
+  color: $normal-text;
+
+  p{
+    font-size: 3em;
+  }
+
+  #buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .optionButton{
+    width: 35%;
+  }
+}
+

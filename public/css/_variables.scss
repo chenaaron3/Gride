@@ -4,3 +4,59 @@ $dark-background: rgb(2, 12, 27);
 $light-background: rgb(23, 42, 69);
 $normal-text: rgb(136, 146, 176);
 $highlight-text: lavender;
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a{
+  text-decoration: none;
+  text-align: center;
+}
+
+body{
+  background-color: $light-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#__next{
+  width: 60%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card{
+  padding: 2em;
+  border-radius: 10px;
+}
+
+.flashy-link{
+  display: inline-block;
+  border: thin solid $primary-color;
+  background-color: transparent;
+  color: $primary-color;
+  padding: .75em 1.5em;
+  border-radius: 5px;
+  margin-left: 3%;
+  transition: .25s;
+}
+
+.flashy-link:hover{
+  background: rgba(64, 224, 208, .1);
+}
