@@ -1,9 +1,8 @@
-
 var firebase = require("firebase/app");
-
 require("firebase/firestore");
+import { main_loop } from '../../public/createRoute.js'
+var database = firebase.firestore();
 
-var database = firebase.firestore()
 
 const googleMapsClient = require('@google/maps').createClient({
     key: 'AIzaSyCZsSuX0Pb4Oz7pLiRuG8_jesTpI6yLGHs',
@@ -44,7 +43,12 @@ async function createRide(req, res) {
         console.log(err);
     });
     
-    console.log(data);
+    data["link"] = await main_loop(data.start_addr, data.dest_addr, []);
+
+    let addDoc = database.collection('rides').add(data)
+    .then(ref => {
+        console.log('Added document with ID: ', ref.id);
+    });
     res.end("Ride Successfully Created!");
 }
 
