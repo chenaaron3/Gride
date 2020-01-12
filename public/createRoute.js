@@ -133,7 +133,6 @@ async function find_shortest_permutation(randomized_passenger_list)
     pass_link += sliced_pass_link[x] + "/";
   }
   link = link + shortest_permutation[0] + "/" + pass_link + shortest_permutation[shortest_permutation.length-1];
-  console.log("link", link);
   return link;
 }
 

@@ -36,10 +36,16 @@ class SearchItem extends React.Component
                         </div>
                         <div className="ItemLocations center-container">
                             <p className="ItemStart">
-                                Start: {this.props.data.start_addr} <br/>
+                                <pre>
+                                Start: {this.props.data.start_addr}<br/>
+                                        Distance: {this.props.data.start_distance.toFixed(2)} Miles Away
+                                </pre>
                             </p>
                             <p className="ItemDestination">
-                                Destination: {this.props.data.dest_addr}
+                                <pre>
+                                Destination: {this.props.data.dest_addr}<br/>
+                                        Distance: {this.props.data.dest_distance.toFixed(2)} Miles Away
+                                </pre>
                             </p>
                             <div className="ItemSpots center-container" style={this.determineColor()}>
                                 <span>
