@@ -26,29 +26,29 @@ class SearchRides extends React.Component
         let mins = parseFloat(dep_time_display.substring(3,5));
         let time = 60 * hours + mins;
 
-        // this.state = {
-        //     dep_time_display: dep_time_display,
-        //     dep_time: time,
-        //     dep_date: yyyy + "-" + mm + "-" + dd,
-        //     month: parseFloat(mm),
-        //     day: parseFloat(dd),
-        //     year: parseFloat(yyyy),
-        //     start_addr: "",
-        //     dest_addr: "",
-        //     loading:false
-        // }
-
         this.state = {
             dep_time_display: dep_time_display,
-            dep_time: 800,
+            dep_time: time,
             dep_date: yyyy + "-" + mm + "-" + dd,
-            month: 1,
-            day: 12,
-            year: 2020,
-            start_addr: "UCSB",
-            dest_addr: "University of California, Irvine",
+            month: parseFloat(mm),
+            day: parseFloat(dd),
+            year: parseFloat(yyyy),
+            start_addr: "",
+            dest_addr: "",
             loading:false
-        }
+        };
+
+        // this.state = {
+        //     dep_time_display: dep_time_display,
+        //     dep_time: 800,
+        //     dep_date: yyyy + "-" + mm + "-" + dd,
+        //     month: 1,
+        //     day: 12,
+        //     year: 2020,
+        //     start_addr: "UCSB",
+        //     dest_addr: "University of California, Irvine",
+        //     loading:false
+        // }
     }
 
     encodeQueryData = (data) => {
