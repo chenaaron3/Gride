@@ -3,6 +3,7 @@ import Head from 'next/head'
 import '../public/css/driverForm.scss'
 const fetch = require('node-fetch');
 import firebase from '../public/firebaseConfig.js'
+firebase();
 
 class DriverForm extends React.Component
 {

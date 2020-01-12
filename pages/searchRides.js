@@ -4,6 +4,7 @@ import '../public/css/searchRides.scss';
 const fetch = require('node-fetch');
 import SearchItem from "../public/Components/SearchItem";
 import firebase from '../public/firebaseConfig.js'
+firebase();
 
 class SearchRides extends React.Component
 {

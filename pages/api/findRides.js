@@ -3,11 +3,14 @@
 var firebase = require("firebase/app");
 require("firebase/firestore");
 
+import fbinit from '../../public/firebaseConfig.js'
+fbinit();
+
 const googleMapsClient = require('@google/maps').createClient({
     key: 'AIzaSyCZsSuX0Pb4Oz7pLiRuG8_jesTpI6yLGHs',
     Promise: Promise
   });
-  
+
 
 var database = firebase.firestore()
 
@@ -63,7 +66,7 @@ async function findRides(req, res) {
     console.log(start_lat, start_long, dest_lat, dest_long);
 
 
-    
+
     var results = {"results": []};
 
     database.collection("rides").where("dep_time", ">=", parseInt(req.query.time) - 60)
@@ -91,10 +94,10 @@ async function findRides(req, res) {
                 });
                 promises.push(p);
             }
-            
+
         });
-        
-        
+
+
        return Promise.all(promises).then((sizes) => {
             for (var i = 0; i < sizes.length; i++) {
                 responses[i]["num_passengers"] = sizes[i];
@@ -102,7 +105,7 @@ async function findRides(req, res) {
             results["results"] = responses;
             console.log("Results: ", results);
             res.status(200).json(results);
-       }); 
+       });
        //console.log("Results: ", results);
         //res.status(200).json(results);
     })

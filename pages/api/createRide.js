@@ -2,6 +2,8 @@ var firebase = require("firebase/app");
 require("firebase/firestore");
 import { main_loop } from '../../public/createRoute.js'
 var database = firebase.firestore();
+import fbinit from '../../public/firebaseConfig.js'
+fbinit();
 
 
 const googleMapsClient = require('@google/maps').createClient({
@@ -47,7 +49,7 @@ async function createRide(req, res) {
     }).catch((err) => {
         console.log(err);
     });
-    
+
     data["link"] = await main_loop(data.start_addr, data.dest_addr, []);
 
     let addDoc = database.collection('rides').add(data)
