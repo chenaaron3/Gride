@@ -16,7 +16,7 @@ class MapComponent extends React.Component
         return (
           <Map google={this.props.google} 
                 zoom={14}
-                initialCenter={{lat: this.props.data.start_coor.lat, lng: this.props.data.start_coor.long}}
+                center={{lat: this.props.data.start_coor.lat, lng: this.props.data.start_coor.long}}
                 style={{width: '50vw', height: '60vh', position: 'relative'}}>
     
             <Marker onClick={this.onMarkerClick}

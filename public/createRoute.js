@@ -48,9 +48,11 @@ function create_permutations(passenger_list, reformatted_origin, reformatted_des
 
 async function get_time(first_location, second_location)
 {
+  console.log("LOCATIONS", first_location, second_location);
   var origins, destinations, time;
   await googleMapsClient.geocode({ address: first_location }).asPromise()
     .then((response) => {
+        console.log("Location 1:", response);
          origins = {
             lat: response.json.results[0].geometry.location.lat,
             long: response.json.results[0].geometry.location.lng
@@ -60,6 +62,7 @@ async function get_time(first_location, second_location)
     });
     await googleMapsClient.geocode({ address: second_location }).asPromise()
         .then((response) => {
+          console.log("Location 2:", response);
           destinations = {
               lat: response.json.results[0].geometry.location.lat,
               long: response.json.results[0].geometry.location.lng
@@ -67,6 +70,7 @@ async function get_time(first_location, second_location)
         }).catch((err) => {
             console.log(err);
         });
+        console.log("Location 3:", origins, destinations);
     await googleMapsClient.distanceMatrix({
         origins:  `${origins.lat},${origins.long}`,
     destinations: `${destinations.lat},${destinations.long}`,
@@ -80,10 +84,15 @@ async function get_time(first_location, second_location)
 
 async function get_length_of_perm(perm, combo_dict)
 {
+  console.log("PERMSDKFSDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
   var value = 0;
   var total_duration = 0;
+  for (var x in perm)
+    console.log(perm[x]);
   while (value + 1 < perm.length)
   {
+
+      console.log("PERM LOCATIONS:   ", perm[value], perm[value+1]);
       if ([perm[value], perm[value+1]] in combo_dict)
       {
           total_duration += combo_dict[perm[value], perm[value+1]];
@@ -141,6 +150,6 @@ export async function main_loop(origin, destination, passenger_list)
 {
   var randomized_passenger_list = create_permutations(passenger_list, origin, destination);
   var shortest_permutation_link = find_shortest_permutation(randomized_passenger_list);
-  console.log(shortest_permutation_link);
+  console.log("link: ", shortest_permutation_link);
   return (await shortest_permutation_link).toString();
 }

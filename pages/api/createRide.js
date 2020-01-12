@@ -8,6 +8,11 @@ const googleMapsClient = require('@google/maps').createClient({
     key: 'AIzaSyCZsSuX0Pb4Oz7pLiRuG8_jesTpI6yLGHs',
     Promise: Promise
   });
+const accountSid = 'AC0ed8fe02013d326857e3742d73ae89d2';
+const authToken = '3c2237dd44198fd206ca3e0531496e02';
+const client = require('twilio')(accountSid, authToken);
+
+
 
 async function createRide(req, res) {
     let data = {
@@ -49,6 +54,14 @@ async function createRide(req, res) {
     .then(ref => {
         console.log('Added document with ID: ', ref.id);
     });
+
+    client.messages
+    .create({
+        body: "Confirmed, You've successfully created a ride! We'll send you an additional text when someone joins. Happy Driving!",
+        from: '+13343263275',
+        to: '+' + data.driver_phone
+    })
+    .then(message => console.log(message.sid));
     res.end("Ride Successfully Created!");
 }
 
