@@ -1,6 +1,12 @@
 import React from 'react';
+<<<<<<< Updated upstream
 import Head from 'next/head'
 import firebase from '../public/firebaseConfig.js'
+=======
+import Head from 'next/head';
+import Passenger from './passengerForm.js';
+import firebase from '../public/firebaseConfig.js';
+>>>>>>> Stashed changes
 import "../public/css/resultRides.scss"
 import { useRouter } from 'next/router'
 const fetch = require('node-fetch');
@@ -11,12 +17,17 @@ const ResultRidesRouter = (props) => {
     return <ResultRides {...props} router={router} />
 }
 
-
 class ResultRides extends React.Component
 {
     constructor(props) {
         super(props);
         this.rideID = props.router.query.rideID;
+<<<<<<< Updated upstream
+=======
+        //console.log(props);
+        //console.log(this.rideID)
+    }
+>>>>>>> Stashed changes
 
         fetch(`/api/getRide?id=${this.rideID}`)
         .then(result =>
@@ -80,8 +91,9 @@ class ResultRides extends React.Component
         if(!this.state || !this.state.data)
             return <div></div>
         return (<React.Fragment>
-            <Head>
+            <head>
                 <title>Result Rides</title>
+<<<<<<< Updated upstream
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             {this.state.loading &&
@@ -138,6 +150,51 @@ class ResultRides extends React.Component
                 </div>
             </div>
         </React.Fragment>)
+=======
+            </head>
+            <div class="grid2x2">
+  <div class="box box1">
+      <div class = "top">
+          <h1>Driver Details</h1>
+      </div>
+      <div class = "driver">
+        <p>Name:____________<br/><br/>Phone:____________</p>
+      </div>
+  </div>
+  <div class="box box2">
+      <div class = "top">
+        <h1>Ride Details</h1>
+      </div>
+      <div class = "ride">
+        <p>Start:____________<br/><br/>Destination:_____<br/><br/>Booked:    3/5</p>
+      </div>
+      <div id="price">
+            <p>Price: $5</p>
+      </div>
+  </div>
+  <div class="box box3">
+      <div class = "top">
+          <h1>Google Maps</h1>
+      </div>
+      <div id="google maps">
+          /*To be implemented*/
+      </div>
+  </div>
+  <div class="box box4">
+      <div class = "top">
+          <h1>Passenger Information</h1>
+      </div>
+      <div class = "passenger">
+        <p>Name:______________<br/><br/>Phone:______________<br/><br/>Pickup:_____________</p>
+      </div>
+      <div id="driver">
+          <p>Professor Boo</p>
+      </div>
+  </div>
+</div>
+            
+        </React.Fragment>);
+>>>>>>> Stashed changes
     }
 }
 
