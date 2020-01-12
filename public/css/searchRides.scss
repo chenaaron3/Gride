@@ -6,10 +6,11 @@
   background-color: $dark-background;
   width: 75%;
   margin-top: 5vh;
-  height: 40vh;
+  height: 48vh;
 }
 
 .searchTitle{
+  height: 12vh;
   font-size: 1.5em;
   color: $highlight-text;
 }
@@ -64,7 +65,7 @@
 }
 
 #search-form-send{
-  margin: 25px auto auto;
+  margin: 15px auto;
   font-size: 1.25em;
 }
 
@@ -72,5 +73,5 @@
   position: absolute;
   width: 100%;
   height: auto;
-  top: 50vh;
+  top: 56vh;
 }

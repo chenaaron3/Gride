@@ -5,39 +5,29 @@ import "./MapComponent.scss"
 class MapComponent extends React.Component
 {
     constructor(props) {
-        super(props);
-        console.log(this.props.data,
-                    this.props.data)
-          
+        super(props);          
     }
 
-    displayMarkers = () => {
-        return (
-        <div>
-          <Marker position={{
-           lat: this.props.start_coor.lat,
-           lng: this.props.start_coor.long
-            }}
-         />
-         <Marker position ={{
-             lat: this.props.dest_coor.lat,
-           lng: this.props.dest_coor.long
-         }}></Marker>
-         </div>
-        );
-        
+    onMarkerClick = () =>{
+        console.log("Marker Clicked");
     }
 
     render() {
         return (
-            <Map
-              google={this.props.google}
-              zoom={8}
-              initialCenter={this.props.start_coor}>
-              {this.displayMarkers()}
-            </Map>
-              
-            
+          <Map google={this.props.google} 
+                zoom={14}
+                initialCenter={{lat: this.props.data.start_coor.lat, lng: this.props.data.start_coor.long}}
+                style={{width: '50vw', height: '60vh', position: 'relative'}}>
+    
+            <Marker onClick={this.onMarkerClick}
+                    title={this.props.data.start_addr}
+                    name={'Starting Location'}
+                    position={{lat: this.props.data.start_coor.lat, lng: this.props.data.start_coor.long}}/>
+             <Marker onClick={this.onMarkerClick}
+                    title={this.props.data.dest_addr}
+                    name={'Destination Location'}
+                    position={{lat: this.props.data.dest_coor.lat, lng: this.props.data.dest_coor.long}}/>
+          </Map>
         );
       }
 }

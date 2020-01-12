@@ -1,0 +1,107 @@
+@import "./_variables.scss";
+
+.resultLeft{
+    position: absolute;
+    left: 0;
+    height: 100vh;
+    width: 50wh;
+    overflow: hidden;
+}
+
+.resultRight{
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    width: 50wh;
+    overflow: hidden;
+}
+
+.resultTopLeft{
+    height: 40%;
+    width: 100%;
+    text-align: center;
+
+    p{
+        font-size: 1.5em;
+        padding: .25em;
+        color: $normal-text;
+        width: 50vw;
+    }
+
+    p:first-child{
+        color: $highlight-text;
+    }
+}
+
+.resultBottomLeft{
+    height: 60%;
+    width: 100%;
+}
+
+.resultTopRight{
+    top: 0;
+    right: 0;
+    height: 40%;
+    width: 100%;
+    text-align: center;
+
+    p{
+        font-size: 1.5em;
+        padding: .25em;
+        color: $normal-text;
+        width: 50vw;
+    }    
+
+    p:first-child{
+        color: $highlight-text;
+    }
+}
+
+.resultBottomRight{
+    bottom: 0;
+    right: 0;
+    height: 60%;
+    width: 100%;
+}
+
+.result-input-field{
+    position: relative;
+    margin-top: 35px;
+    padding: 20px 0;
+    color: $normal-text;
+    width: 75%;
+  
+    label{
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      transition: .25s;
+      font-weight: normal;
+      pointer-events: none;
+    }
+  
+    input{
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline;
+      outline: none;
+      border: none;
+      border-bottom: thin solid black;
+      padding-left: 10px;
+      height: 100%;
+      width: 100%;
+      text-align: left;
+    }
+  
+    input:valid ~ label,
+    input:focus ~ label{
+      top: -25px;
+      color: $primary-color;
+    }
+  }
+  
+  #result-form-send{
+    margin: 25px auto auto;
+    font-size: 1.25em;
+  }

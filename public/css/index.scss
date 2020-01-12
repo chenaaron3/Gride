@@ -1,15 +1,16 @@
 @import "./_variables.scss";
 
+
+
 .indexBanner{
   background-color: $background;
   height: 30vh;
   width: 100%;
   padding: 10%;
-  margin: 5vh;
+  margin-bottom: 5%;
 
   h1{
-    font-size: 5em;
-    padding-top: .5em;
+    font-size: 56px;
     color: $highlight-text;
     text-align: center;
   }
@@ -21,18 +22,19 @@
 
 .indexOptions{
   background-color: $background;
-  height: 50vh;
+  height: 45vh;
   width: 100%;
   color: $normal-text;
 
   p{
     top: 0;
-    font-size: 50px;
+    font-size: 42px;
     text-align: center;
   }
 
   #buttons{
     bottom: 0;
+    height: 20vh;
     width: 100%;
     display: flex;
     justify-content: space-around;

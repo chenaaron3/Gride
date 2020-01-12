@@ -21,11 +21,13 @@ class LandingPage extends React.Component
 
               <div className="indexOptions center-container card">
                   <p>
-                      Are you a<br/>
+                      Are you a
+                  </p>
+                  <p>
                       ...
                   </p>
                   <div id="buttons">
-                      <LabeledButton label="Driver?" txt="Create a Ride" btnhref="/driverForm"/>
+                      <LabeledButton label="Driver?" txt="Host a Ride" btnhref="/driverForm"/>
                       <LabeledButton label="Passenger?" txt="Join a Ride" btnhref="/searchRides"/>
                   </div>
               </div>

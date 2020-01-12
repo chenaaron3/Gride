@@ -37,6 +37,18 @@ class SearchRides extends React.Component
             dest_addr: "",
             loading:false
         }
+
+        // this.state = {
+        //     dep_time_display: dep_time_display,
+        //     dep_time: 600,
+        //     dep_date: yyyy + "-" + mm + "-" + dd,
+        //     month: 1,
+        //     day: 1,
+        //     year: 2020,
+        //     start_addr: "Lynbrook High School",
+        //     dest_addr: "University of California, Irvine",
+        //     loading:false
+        // }
     }
 
     encodeQueryData = (data) => {
@@ -148,7 +160,7 @@ class SearchRides extends React.Component
                     </div>
                 </div>
                 <div>
-                    <div className="input-submit">
+                    <div className="search-input-submit center-container">
                         <input type="submit" className="flashy-link" id="search-form-send" value="Find a Ride!"/>
                     </div>
                 </div>

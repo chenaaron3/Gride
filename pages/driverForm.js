@@ -155,7 +155,7 @@ class DriverForm extends React.Component
                         </div>
                     </div>
                 </div>
-                <div className="input-submit">
+                <div className="driver-input-submit">
                     <input type="submit" className="flashy-link" id="driver-form-send" value="Create Ride!"/>
                 </div>
             </form>

@@ -18,7 +18,7 @@ class SearchItem extends React.Component
         let total = this.props.data.max_passengers;
         if(taken/total <= .25)
             return greenStyle;
-        else if(taken/total <= .75)
+        else if(taken/total < .75)
             return yellowStyle;
         else
             return redStyle;
@@ -28,7 +28,7 @@ class SearchItem extends React.Component
         return (
             <Link href={`/resultRides?rideID=`+this.props.data.ride_id}>
                 <a className="SearchItem">
-                    <div className="SearchItem">
+                    <div>
                         <div className="ItemPrice center-container">
                             <p>
                                 ${this.props.data.charge_amt}
@@ -36,16 +36,12 @@ class SearchItem extends React.Component
                         </div>
                         <div className="ItemLocations center-container">
                             <p className="ItemStart">
-                                <pre>
-                                Start: {this.props.data.start_addr}<br/>
-                                        Distance: {this.props.data.start_distance.toFixed(2)} Miles Away
-                                </pre>
+                            Start: {this.props.data.start_addr}<br/>
+                                    Distance: {this.props.data.start_distance.toFixed(2)} Miles Away
                             </p>
                             <p className="ItemDestination">
-                                <pre>
-                                Destination: {this.props.data.dest_addr}<br/>
-                                        Distance: {this.props.data.dest_distance.toFixed(2)} Miles Away
-                                </pre>
+                            Destination: {this.props.data.dest_addr}<br/>
+                                    Distance: {this.props.data.dest_distance.toFixed(2)} Miles Away
                             </p>
                             <div className="ItemSpots center-container" style={this.determineColor()}>
                                 <span>

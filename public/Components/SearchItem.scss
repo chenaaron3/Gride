@@ -2,13 +2,12 @@
 
 .SearchItem{
   position: relative;
-  width: 40vw;
-  height: 10vh;
+  width: 45vw;
+  height: 15vh;
   background-color: $background;
   display: flex;
   flex-direction: row;
-
-  transition: .8s;
+  transition: .5s;
 }
 
 .SearchItem:hover{
@@ -16,6 +15,7 @@
 }
 
 .ItemPrice{
+  position: absolute;
   height: 100%;
   width: 20%;
   color: $primary-color;
@@ -23,8 +23,12 @@
 }
 
 .ItemLocations{
+  position: absolute;
+  height: 100%;
   width: 100%;
   margin-right: 20%;
+
+  font-size: .9em;
 }
 
 .ItemStart{

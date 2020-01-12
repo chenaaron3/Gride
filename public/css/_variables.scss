@@ -56,10 +56,11 @@ body{
   border-radius: 5px;
   margin-left: 3%;
   transition: .25s;
+  cursor: pointer;
 }
 
 .flashy-link:hover{
-  background: rgba(64, 224, 208, .1);
+  background: rgba(64, 224, 208, .3);
 }
 
 .sk-cube-grid {

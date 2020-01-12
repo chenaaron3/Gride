@@ -1,10 +1,11 @@
 @import "../css/_variables.scss";
 
 .labeledButton{
+  width: 50%;
   background-color: $dark-background;
-  width: 40%;
 }
 
 .LabeledButtonText{
-  margin: 5px;
+  font-size: 20px;
+  margin-bottom: 7.5px;
 }
