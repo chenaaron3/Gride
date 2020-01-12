@@ -5,6 +5,7 @@ import "../public/css/resultRides.scss"
 import { useRouter } from 'next/router'
 const fetch = require('node-fetch');
 import MapComponent from '../public/Components/MapComponent'
+import { SamplePage } from 'twilio/lib/rest/autopilot/v1/assistant/task/sample';
 
 const ResultRidesRouter = (props) => {
     const router = useRouter();
@@ -14,27 +15,42 @@ const ResultRidesRouter = (props) => {
 
 class ResultRides extends React.Component
 {
-    constructor(props) {
-        super(props);
-        this.rideID = props.router.query.rideID;
-
+      componentDidMount(){
+          console.log("Data:", this.state);
+        console.log("Will Mounting!");
+        const comp = this;
         fetch(`/api/getRide?id=${this.rideID}`)
         .then(result =>
         result.json())
         .then(json => {
+            console.log("Data Fetched!!");
             console.log(json);
-            this.setState({data:json, start_addr:json.start_addr, dest_addr:json.dest_addr});
+            comp.setState({data:json, 
+                        start_addr:json.start_addr, 
+                        dest_addr:json.dest_addr,
+                        ride_ID:comp.rideID,
+                        passenger_name:"",
+                        passenger_phone:"",
+                        pickup_addr:"",
+                        loading:false,
+                        loaded:true});
         }).catch(err => {
             console.log(err);
         });
+      }
 
-        this.state = {
-            ride_ID:this.rideID,
+    constructor(props) {
+        console.log("Constructor!");
+        super(props);
+        this.rideID = props.router.query.rideID;
+        this.state = ({data:{driver_name:"",driver_phone:"",charge_amt:0,start_addr:"",dest_addr:"",passengers:[],max_passengers:"",start_coor:{lat:0,long:0}, dest_coor:{lat:0,long:0}}, 
+            start_addr:"", 
+            dest_addr:"",
+            ride_ID: this.rideID,
             passenger_name:"",
             passenger_phone:"",
             pickup_addr:"",
-            loading:false
-        };
+            loading:false});
     }
 
     handleSubmit = (event) => {
@@ -77,8 +93,7 @@ class ResultRides extends React.Component
 
     render()
     {
-        if(!this.state || !this.state.data)
-            return <div></div>
+        console.log("Rendering!");
         return (<React.Fragment>
             <Head>
                 <title>Result Rides</title>

@@ -36,16 +36,16 @@ class SearchRides extends React.Component
             start_addr: "",
             dest_addr: "",
             loading:false
-        }
+        };
 
         // this.state = {
         //     dep_time_display: dep_time_display,
-        //     dep_time: 600,
+        //     dep_time: 800,
         //     dep_date: yyyy + "-" + mm + "-" + dd,
         //     month: 1,
-        //     day: 1,
+        //     day: 12,
         //     year: 2020,
-        //     start_addr: "Lynbrook High School",
+        //     start_addr: "UCSB",
         //     dest_addr: "University of California, Irvine",
         //     loading:false
         // }

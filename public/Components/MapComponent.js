@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import "./MapComponent.scss"
+import SearchItem from "./SearchItem";
 
 class MapComponent extends React.Component
 {
@@ -16,7 +17,7 @@ class MapComponent extends React.Component
         return (
           <Map google={this.props.google}
                 zoom={14}
-                initialCenter={{lat: this.props.data.start_coor.lat, lng: this.props.data.start_coor.long}}
+                center={{lat: this.props.data.start_coor.lat, lng: this.props.data.start_coor.long}}
                 style={{width: '50vw', height: '60vh', position: 'relative'}}>
 
             <Marker onClick={this.onMarkerClick}
@@ -27,8 +28,18 @@ class MapComponent extends React.Component
                     title={this.props.data.dest_addr}
                     name={'Destination Location'}
                     position={{lat: this.props.data.dest_coor.lat, lng: this.props.data.dest_coor.long}}/>
-
-              {this.props.data.}
+            <Marker/>
+              {this.props.data.passengers.map((data, i) =>{
+                  console.log(data);
+                  return (<Marker
+                      key={i}
+                      title={data.name}
+                      position={{lat: data.coor.lat, lng: data.coor.long}}
+                      icon={{
+                          url: `/Emojis/Emoji-${Math.floor(Math.random() * 8 + 1)}.png`,
+                          anchor: new google.maps.Point(32,32),
+                          scaledSize: new google.maps.Size(64,64)
+                      }}/>)})}
           </Map>
         );
       }
