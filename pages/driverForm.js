@@ -35,11 +35,13 @@ class DriverForm extends React.Component
             day: parseFloat(dd),
             year: parseFloat(yyyy),
             start_addr: "",
-            dest_addr: ""
+            dest_addr: "",
+            loading: false
         }
     }
 
     handleSubmit = (event) => {
+        this.setState({loading:true});
         fetch("/api/createRide", {
             method: 'post', // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -49,6 +51,7 @@ class DriverForm extends React.Component
         }).then(function(response) {
             return response.text();
         }).then(function(data) {
+            // this.setState({loading:true});
             window.open("/driverConfirm", "_self");
         });
 
@@ -90,47 +93,67 @@ class DriverForm extends React.Component
                 <title>Driver Form</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
+            {this.state.loading &&
+            <div className="sk-cube-grid">
+                <div className="sk-cube sk-cube1"></div>
+                <div className="sk-cube sk-cube2"></div>
+                <div className="sk-cube sk-cube3"></div>
+                <div className="sk-cube sk-cube4"></div>
+                <div className="sk-cube sk-cube5"></div>
+                <div className="sk-cube sk-cube6"></div>
+                <div className="sk-cube sk-cube7"></div>
+                <div className="sk-cube sk-cube8"></div>
+                <div className="sk-cube sk-cube9"></div>
+            </div>}
+
             <h1 className="driverFormDirections">Fill out this form to create a Ride!</h1>
             <form onSubmit={this.handleSubmit} className="center-container driverForm">
-                <div className="input-field">
-                    <input value={this.state.driver_name} type="text" name="driver_name"
-                           onChange={this.handleChange} required/>
-                    <label>Name</label>
-                </div>
-                <div className="input-field">
-                    <input value={this.state.driver_phone} type="number" name="driver_phone"
-                           onChange={this.handleChange} required/>
-                    <label>Phone</label>
-                </div>
-                <div className="input-field">
-                    <input value={this.state.dep_time_display} type="time" name="dep_time_display"
-                           onChange={this.handleChange} required/>
-                    <label>Departure Time</label>
-                </div>
-                <div className="input-field">
-                    <input value={this.state.dep_date} type="date" name="dep_date"
-                           onChange={this.handleChange} required/>
-                    <label>Departure Date</label>
-                </div>
-                <div className="input-field">
-                    <input value={this.state.start_addr} type="text" name="start_addr"
-                           onChange={this.handleChange} required/>
-                    <label>Start Address</label>
-                </div>
-                <div className="input-field">
-                    <input value={this.state.dest_addr} type="text" name="dest_addr"
-                           onChange={this.handleChange} required/>
-                    <label>Destination Address</label>
-                </div>
-                <div className="input-field">
-                    <input value={this.state.max_passengers} type="number" name="max_passengers"
-                           onChange={this.handleChange} required/>
-                    <label>Max Passengers</label>
-                </div>
-                <div className="input-field">
-                    <input value={this.state.charge_amt} type="number" name="charge_amt"
-                           onChange={this.handleChange} required/>
-                    <label>Charge Amount</label>
+                <div className="driverFormInputs">
+                    <div className="driverFormLeft">
+                        <div className="driver-input-field">
+                            <input value={this.state.driver_name} type="text" name="driver_name"
+                                   onChange={this.handleChange} required/>
+                            <label>Name</label>
+                        </div>
+                        <div className="driver-input-field">
+                            <input value={this.state.driver_phone} type="number" name="driver_phone"
+                                   onChange={this.handleChange} required/>
+                            <label>Phone</label>
+                        </div>
+                        <div className="driver-input-field">
+                            <input value={this.state.dep_time_display} type="time" name="dep_time_display"
+                                   onChange={this.handleChange} required/>
+                            <label>Departure Time</label>
+                        </div>
+                        <div className="driver-input-field">
+                            <input value={this.state.dep_date} type="date" name="dep_date"
+                                   onChange={this.handleChange} required/>
+                            <label>Departure Date</label>
+                        </div>
+                    </div>
+                    <div className="driverFormRight">
+                        <div className="driver-input-field">
+                            <input value={this.state.start_addr} type="text" name="start_addr"
+                                   onChange={this.handleChange} required/>
+                            <label>Start Address</label>
+                        </div>
+                        <div className="driver-input-field">
+                            <input value={this.state.dest_addr} type="text" name="dest_addr"
+                                   onChange={this.handleChange} required/>
+                            <label>Destination Address</label>
+                        </div>
+                        <div className="driver-input-field">
+                            <input value={this.state.max_passengers} type="number" name="max_passengers"
+                                   onChange={this.handleChange} required/>
+                            <label>Max Passengers</label>
+                        </div>
+                        <div className="driver-input-field">
+                            <input value={this.state.charge_amt} type="number" name="charge_amt"
+                                   onChange={this.handleChange} required/>
+                            <label>Charge Amount in $</label>
+                        </div>
+                    </div>
                 </div>
                 <div className="input-submit">
                     <input type="submit" className="flashy-link" id="driver-form-send" value="Create Ride!"/>
