@@ -66,7 +66,8 @@ async function findRides(req, res) {
     
     var results = {"results": []};
 
-    database.collection("rides").where("dep_time", "==", parseInt(req.query.time))
+    database.collection("rides").where("dep_time", ">=", parseInt(req.query.time) - 60)
+    .where("dep_time", "<=", parseInt(req.query.time) + 60 )
     .where("year", "==", parseInt(req.query.year)).where("month", "==", parseInt(req.query.month))
     .where("day", "==", parseInt(req.query.day))
     .get().then((querySnapshot) => {
@@ -78,11 +79,12 @@ async function findRides(req, res) {
             var response = doc.data();
             var start_coor = response.start_coor;
             var dest_coor = response.dest_coor;
-            response["ride_id"] = doc.id;
-            if (distance(start_coor.lat, start_coor.long, start_lat, start_long, "M") < 5 && 
-                distance(dest_coor.lat, dest_coor.long, dest_lat, dest_long, "M") < 5) {
-                    // results["results"].push(response);    
-                    // console.log(response);
+            var start_distance = distance(start_coor.lat, start_coor.long, start_lat, start_long, "M");
+            var dest_distance = distance(dest_coor.lat, dest_coor.long, dest_lat, dest_long, "M");
+            if (start_distance < 5 && dest_distance < 5) {
+                response["ride_id"] = doc.id;
+                response["start_distance"] = start_distance;
+                response["dest_distance"] = dest_distance;
                 responses.push(response);
                 const p = doc.ref.collection("passengers").get().then(snap => {
                     return snap.size;

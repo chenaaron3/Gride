@@ -30,15 +30,31 @@ async function joinRide(req, res) {
     });
     console.log(data);
     var passenger_addr = [];
-    // db.collection('rides').doc(data.ride_id).collection("passengers").get()
-    // .then((querySnap) => {
-    //     querySnap.forEach( function(doc) {
+    
+    await db.collection('rides').doc(data.ride_id).collection("passengers").add(data)
+    .then((doc) => {}).catch((err) => {
+        console.log("error: ", err)
+    });
 
-    //     });
-        
-    // }).then(ref => {
-    //     console.log('Added document with ID: ', ref.id);
-    // });
+    await db.collection('rides').doc(data.ride_id).collection("passengers").get()
+    .then((querySnap) => {
+        querySnap.forEach( function(doc) {
+            passenger_addr.push(doc.pickup_addr);
+        });
+    }).catch((err) => {
+        console.log("error: ", err);
+    });
+
+    let new_data = {
+        link: await main_loop(data.start_addr, data.dest_addr, passenger_addr)
+    }
+    
+    await db.collection('rides').doc(data.ride_id).set(new_data)
+    .then((doc) => {}).catch((err) => {
+        console.log("error: ", err);
+    });
+
+
     res.end("You Have Been Added!");
 }
 
