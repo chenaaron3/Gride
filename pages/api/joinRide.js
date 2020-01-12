@@ -5,8 +5,14 @@ import fbinit from '../../public/firebaseConfig.js'
 fbinit();
 
 var database = firebase.firestore()
-const accountSid = 'AC0ed8fe02013d326857e3742d73ae89d2';
-const authToken = '3c2237dd44198fd206ca3e0531496e02';
+//Outdated Info
+//const accountSid = 'AC0ed8fe02013d326857e3742d73ae89d2';
+//const authToken = '3c2237dd44198fd206ca3e0531496e02';
+
+//Updated Info
+const accountSid = 'AC7e6981ae45b860926601852d37cb118d';
+const authToken = 'bedc213f5f85fe89cfc6162bccbb0c99';
+
 const client = require('twilio')(accountSid, authToken);
 
 const googleMapsClient = require('@google/maps').createClient({
