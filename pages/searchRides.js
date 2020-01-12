@@ -34,7 +34,8 @@ class SearchRides extends React.Component
             day: parseFloat(dd),
             year: parseFloat(yyyy),
             start_addr: "",
-            dest_addr: ""
+            dest_addr: "",
+            loading:false
         }
     }
 
@@ -46,6 +47,7 @@ class SearchRides extends React.Component
     }
 
     handleSubmit = (event) => {
+        this.setState({loading: true});
         var url = '/api/findRides?';
         var params = {time: this.state.dep_time,
                         month: this.state.month,
@@ -65,6 +67,11 @@ class SearchRides extends React.Component
             return response.json();
         }).then(function(json) {
             console.log(json);
+            comp.setState({loading: false});
+            if(json.results.length == 0)
+            {
+                alert("Sorry! No Rides were found!")
+            }
             comp.setState({data: json.results});
         });
 
@@ -98,6 +105,18 @@ class SearchRides extends React.Component
                 <title>Search Rides</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            {this.state.loading &&
+            <div className="sk-cube-grid">
+                <div className="sk-cube sk-cube1"></div>
+                <div className="sk-cube sk-cube2"></div>
+                <div className="sk-cube sk-cube3"></div>
+                <div className="sk-cube sk-cube4"></div>
+                <div className="sk-cube sk-cube5"></div>
+                <div className="sk-cube sk-cube6"></div>
+                <div className="sk-cube sk-cube7"></div>
+                <div className="sk-cube sk-cube8"></div>
+                <div className="sk-cube sk-cube9"></div>
+            </div>}
             <form onSubmit={this.handleSubmit} className="center-container searchRidesForm">
                 <div className="searchTitle">
                     <h1>Search for a Ride!</h1>

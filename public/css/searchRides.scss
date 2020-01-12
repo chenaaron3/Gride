@@ -6,7 +6,7 @@
   background-color: $dark-background;
   width: 75%;
   margin-top: 5vh;
-  height: 40%;
+  height: 40vh;
 }
 
 .searchTitle{
@@ -39,6 +39,7 @@
     top: 10px;
     transition: .25s;
     font-weight: normal;
+    pointer-events: none;
   }
 
   input{
@@ -68,6 +69,8 @@
 }
 
 .searchResults{
+  position: absolute;
   width: 100%;
   height: auto;
+  top: 50vh;
 }
