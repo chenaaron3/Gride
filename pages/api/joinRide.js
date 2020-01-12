@@ -1,7 +1,8 @@
 var firebase = require("firebase/app");
 require("firebase/firestore");
 import { main_loop } from '../../public/createRoute.js'
-
+import fbinit from '../../public/firebaseConfig.js'
+fbinit();
 
 var database = firebase.firestore()
 const accountSid = 'AC0ed8fe02013d326857e3742d73ae89d2';
@@ -36,7 +37,7 @@ async function joinRide(req, res) {
     });
     console.log(data);
     var passenger_addr = [];
-    
+
     await database.collection('rides').doc(data.ride_id).collection("passengers").add(data)
     .then((doc) => {}).catch((err) => {
         console.log("error: ", err)
@@ -59,9 +60,9 @@ async function joinRide(req, res) {
     console.log(new_data);
     await database.collection('rides').doc(data.ride_id).update(new_data)
     .then(() => {
-        
+
     }).catch((err) => {
-        
+
         console.log("error: ", err);
     });
 
@@ -78,7 +79,7 @@ async function joinRide(req, res) {
     }).catch((err) => {
         console.log("error: ", err);
     });
-    
+
 
 
 

@@ -2,6 +2,9 @@ var firebase = require("firebase/app");
 
 require("firebase/firestore");
 
+import fbinit from '../../public/firebaseConfig.js'
+fbinit();
+
 var database = firebase.firestore()
 
 async function getRide(req, res) {
@@ -18,7 +21,7 @@ async function getRide(req, res) {
                     passengers.push(p.data());
                     console.log(p.id, " => ", p.data());
                 });
-                
+
                 //append passengers to json object and return
                 ride_data = doc.data();
                 ride_data["passengers"] = passengers;
