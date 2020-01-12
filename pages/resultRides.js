@@ -27,7 +27,7 @@ class ResultRides extends React.Component
             result.json())
             .then(json =>
                 console.log(json)
-                // this.setState({start_coor:json.})
+                // this.setState({start_coor:json.results.start_coor, dest_coor:json.results.dest_coor})
                 );
     }
 
@@ -38,7 +38,7 @@ class ResultRides extends React.Component
                 <title>Result Rides</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <MapComponent data={this.state.data}/>
+            <MapComponent start_coor={this.state.start_coor} dest_coor={this.state.dest_coor}/>
             <p>Result Rides Page!</p>
         </React.Fragment>)
     }

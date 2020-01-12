@@ -15,13 +15,13 @@ class MapComponent extends React.Component
         return (
         <div>
           <Marker position={{
-           lat: this.props.data.start_coor.lat,
-           lng: this.props.data.start_coor.long
+           lat: this.props.start_coor.lat,
+           lng: this.props.start_coor.long
             }}
          />
          <Marker position ={{
-             lat: this.props.data.dest_coor.lat,
-           lng: this.props.data.dest_coor.long
+             lat: this.props.dest_coor.lat,
+           lng: this.props.dest_coor.long
          }}></Marker>
          </div>
         );
@@ -33,7 +33,7 @@ class MapComponent extends React.Component
             <Map
               google={this.props.google}
               zoom={8}
-              initialCenter={this.props.data.start_coor}>
+              initialCenter={this.props.start_coor}>
               {this.displayMarkers()}
             </Map>
               

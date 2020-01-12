@@ -26,7 +26,7 @@ class SearchItem extends React.Component
 
     render() {
         return (
-            <Link href={`/resultRides?rideID=IMse8WAwvfJJBhyUz67U`}>
+            <Link href={`/resultRides?rideID=`+this.props.data.ride_id}>
                 <a className="SearchItem">
                     <div className="SearchItem">
                         <div className="ItemPrice center-container">
