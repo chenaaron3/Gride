@@ -5,7 +5,7 @@ import "./MapComponent.scss"
 class MapComponent extends React.Component
 {
     constructor(props) {
-        super(props);          
+        super(props);
     }
 
     onMarkerClick = () =>{
@@ -14,11 +14,11 @@ class MapComponent extends React.Component
 
     render() {
         return (
-          <Map google={this.props.google} 
+          <Map google={this.props.google}
                 zoom={14}
                 initialCenter={{lat: this.props.data.start_coor.lat, lng: this.props.data.start_coor.long}}
                 style={{width: '50vw', height: '60vh', position: 'relative'}}>
-    
+
             <Marker onClick={this.onMarkerClick}
                     title={this.props.data.start_addr}
                     name={'Starting Location'}
@@ -27,6 +27,8 @@ class MapComponent extends React.Component
                     title={this.props.data.dest_addr}
                     name={'Destination Location'}
                     position={{lat: this.props.data.dest_coor.lat, lng: this.props.data.dest_coor.long}}/>
+
+              {this.props.data.}
           </Map>
         );
       }
