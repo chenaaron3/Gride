@@ -3,6 +3,7 @@ import Head from 'next/head'
 import '../public/css/index.scss'
 import LabeledButton from "../public/Components/LabeledButton";
 import firebase from '../public/firebaseConfig.js'
+firebase();
 
 class LandingPage extends React.Component
 {

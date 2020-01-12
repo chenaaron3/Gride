@@ -4,6 +4,7 @@ import LandingPage from './index.js';
 import LabeledButton from "../public/Components/LabeledButton";
 import "../public/css/driverConfirm.scss";
 import firebase from '../public/firebaseConfig.js'
+firebase();
 
 class DriverConfirm extends React.Component
 {

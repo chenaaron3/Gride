@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head'
 import firebase from '../public/firebaseConfig.js'
+firebase();
 
 class PassengerForm extends React.Component
 {

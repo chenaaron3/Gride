@@ -1,11 +1,12 @@
 import React from 'react';
 import Head from 'next/head'
-import firebase from '../public/firebaseConfig.js'
 import "../public/css/resultRides.scss"
 import { useRouter } from 'next/router'
 const fetch = require('node-fetch');
 import MapComponent from '../public/Components/MapComponent'
 import { SamplePage } from 'twilio/lib/rest/autopilot/v1/assistant/task/sample';
+import firebase from '../public/firebaseConfig.js'
+firebase();
 
 const ResultRidesRouter = (props) => {
     const router = useRouter();
@@ -25,8 +26,8 @@ class ResultRides extends React.Component
         .then(json => {
             console.log("Data Fetched!!");
             console.log(json);
-            comp.setState({data:json, 
-                        start_addr:json.start_addr, 
+            comp.setState({data:json,
+                        start_addr:json.start_addr,
                         dest_addr:json.dest_addr,
                         ride_ID:comp.rideID,
                         passenger_name:"",
@@ -43,8 +44,8 @@ class ResultRides extends React.Component
         console.log("Constructor!");
         super(props);
         this.rideID = props.router.query.rideID;
-        this.state = ({data:{driver_name:"",driver_phone:"",charge_amt:0,start_addr:"",dest_addr:"",passengers:[],max_passengers:"",start_coor:{lat:0,long:0}, dest_coor:{lat:0,long:0}}, 
-            start_addr:"", 
+        this.state = ({data:{driver_name:"",driver_phone:"",charge_amt:0,start_addr:"",dest_addr:"",passengers:[],max_passengers:"",start_coor:{lat:0,long:0}, dest_coor:{lat:0,long:0}},
+            start_addr:"",
             dest_addr:"",
             ride_ID: this.rideID,
             passenger_name:"",
